@@ -2,9 +2,19 @@
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+# Streamlit Cloud 등에서 앱 엔트리 CWD가 달라도 `pig` 패키지를 찾을 수 있도록
+# 저장소 루트(pig/의 부모)를 sys.path에 넣는다.
+_APP_DIR = Path(__file__).resolve().parent
+_REPO_ROOT = _APP_DIR.parent
+_root_str = str(_REPO_ROOT)
+if _root_str not in sys.path:
+    sys.path.append(_root_str)
+
 import logging
 import os
-from pathlib import Path
 from typing import Any, Dict, List, Set
 
 import streamlit as st
