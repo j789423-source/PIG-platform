@@ -1,0 +1,9 @@
+{
+  "selected_majors": ["Money", "Career", "Tech"],
+  "selected_topic_ids": ["money_stocks", "career_automation", "tech_ai"],
+  "interest_keywords": ["ETF", "배당", "Cursor", "프롬프트"],
+  "blocked_noise_keywords": ["협찬", "낚시", "광고"],
+  "skill_level": "beginner",
+  "tone": "friendly",
+  "updated_at": ""
+}
