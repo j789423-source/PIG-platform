@@ -9,7 +9,7 @@ from typing import Any, Dict, List, Set
 
 import streamlit as st
 
-from pig.categories import ALL_MAJORS, MajorCategory
+from categories import ALL_MAJORS, MajorCategory
 from pig.config_manager import (
     DEFAULT_CONFIG_PATH,
     UserConfig,
