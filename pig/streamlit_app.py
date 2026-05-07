@@ -3,35 +3,30 @@
 from __future__ import annotations
 
 import sys
-from pathlib import Path
+import os
 
-# Streamlit Cloud 등에서 앱 엔트리 CWD가 달라도 `pig` 패키지를 찾을 수 있도록
-# 저장소 루트(pig/의 부모)를 sys.path에 넣는다.
-_APP_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _APP_DIR.parent
-_root_str = str(_REPO_ROOT)
-if _root_str not in sys.path:
-    sys.path.append(_root_str)
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import logging
-import os
+from pathlib import Path
 from typing import Any, Dict, List, Set
 
 import streamlit as st
 
-from pig.categories import ALL_MAJORS, MajorCategory
-from pig.config_manager import (
+from categories import ALL_MAJORS, MajorCategory
+from config_manager import (
     DEFAULT_CONFIG_PATH,
     UserConfig,
     load_config,
     save_config,
     validate_config,
 )
-from pig.pipeline import collect_and_filter, run_digest
+from pipeline import collect_and_filter, run_digest
 
 # Streamlit 실행 시 콘솔 로그 과다 방지
-logging.getLogger("pig.news_sources").setLevel(logging.WARNING)
-logging.getLogger("pig.pipeline").setLevel(logging.WARNING)
+logging.getLogger("news_sources").setLevel(logging.WARNING)
+logging.getLogger("pipeline").setLevel(logging.WARNING)
 
 
 def _majors_by_id() -> Dict[str, MajorCategory]:
