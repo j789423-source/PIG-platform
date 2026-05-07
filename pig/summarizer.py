@@ -2,12 +2,19 @@
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+_pig_dir = str(Path(__file__).resolve().parent)
+if _pig_dir not in sys.path:
+    sys.path.insert(0, _pig_dir)
+
 import json
 import os
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
-from pig.config_manager import UserConfig
+from config_manager import UserConfig
 
 try:
     from openai import OpenAI

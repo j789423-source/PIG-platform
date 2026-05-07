@@ -2,26 +2,30 @@
 
 from __future__ import annotations
 
-import logging
+import sys
 import os
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+import logging
 from pathlib import Path
 from typing import Any, Dict, List, Set
 
 import streamlit as st
 
 from categories import ALL_MAJORS, MajorCategory
-from pig.config_manager import (
+from config_manager import (
     DEFAULT_CONFIG_PATH,
     UserConfig,
     load_config,
     save_config,
     validate_config,
 )
-from pig.pipeline import collect_and_filter, run_digest
+from pipeline import collect_and_filter, run_digest
 
 # Streamlit 실행 시 콘솔 로그 과다 방지
-logging.getLogger("pig.news_sources").setLevel(logging.WARNING)
-logging.getLogger("pig.pipeline").setLevel(logging.WARNING)
+logging.getLogger("news_sources").setLevel(logging.WARNING)
+logging.getLogger("pipeline").setLevel(logging.WARNING)
 
 
 def _majors_by_id() -> Dict[str, MajorCategory]:
