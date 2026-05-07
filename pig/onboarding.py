@@ -5,10 +5,15 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
+
+_pig_dir = str(Path(__file__).resolve().parent)
+if _pig_dir not in sys.path:
+    sys.path.insert(0, _pig_dir)
+
 from typing import List
 
-from pig.categories import ALL_MAJORS, MajorCategory
-from pig.config_manager import UserConfig, save_config, validate_config
+from categories import ALL_MAJORS, MajorCategory
+from config_manager import UserConfig, save_config, validate_config
 
 
 def _prompt_line(msg: str, default: str = "") -> str:

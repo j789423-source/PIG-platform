@@ -2,13 +2,19 @@
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+_pig_dir = str(Path(__file__).resolve().parent)
+if _pig_dir not in sys.path:
+    sys.path.insert(0, _pig_dir)
+
 import json
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
-from pathlib import Path
 from typing import Any, Dict, List, Literal, Optional
 
-from pig.categories import MAJOR_BY_ID, get_topic_by_id
+from categories import MAJOR_BY_ID, get_topic_by_id
 
 SkillLevel = Literal["beginner", "expert"]
 TonePreference = Literal["friendly", "cold"]

@@ -2,18 +2,24 @@
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+_pig_dir = str(Path(__file__).resolve().parent)
+if _pig_dir not in sys.path:
+    sys.path.insert(0, _pig_dir)
+
 import argparse
 import json
 import logging
-from pathlib import Path
 from typing import Any, Dict, List, Optional, Set
 
-from pig.ai_quality_gate import ai_should_discard_article
-from pig.categories import get_topic_by_id
-from pig.config_manager import DEFAULT_CONFIG_PATH, UserConfig, load_config
-from pig.news_sources import RawArticle, fetch_article_text, fetch_google_news_rss, fetch_newsapi_everything
-from pig.noise_filter import is_kimchi_article
-from pig.summarizer import summarize_article
+from ai_quality_gate import ai_should_discard_article
+from categories import get_topic_by_id
+from config_manager import DEFAULT_CONFIG_PATH, UserConfig, load_config
+from news_sources import RawArticle, fetch_article_text, fetch_google_news_rss, fetch_newsapi_everything
+from noise_filter import is_kimchi_article
+from summarizer import summarize_article
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
